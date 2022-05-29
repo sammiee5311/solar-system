@@ -10,7 +10,6 @@ const planets = computed(() => state.planets);
 
 let p5: P5;
 let sun: Planet;
-let planet: Planet;
 const sunRadius = 50;
 
 const resizeWindow = () => {
@@ -43,14 +42,18 @@ onMounted(() => {
     };
 
     p5.mouseClicked = () => {
-      // const magnitude = p5.mag(p5.mouseX - p5.floor(p5.width / 2), p5.mouseY - p5.floor(p5.height / 2));
+      const x = p5.mouseX - p5.floor(p5.width / 2);
+      const y = p5.mouseY - p5.floor(p5.height / 2);
       const planetRadius = p5.random(10, 30);
-      const planetPos = p5.createVector(p5.mouseX - p5.floor(p5.width / 2), p5.mouseY - p5.floor(p5.height / 2));
-      const planetVel = getPlanetVelocity(planetPos.copy(), sun, p5);
 
-      planet = new Planet(planetRadius, planetPos, planetVel, p5);
+      if (p5.abs(x) - planetRadius / 2 >= sunRadius || p5.abs(y) - planetRadius / 2 >= sunRadius) {
+        const planetPos = p5.createVector(x, y);
+        const planetVel = getPlanetVelocity(planetPos.copy(), sun, p5);
 
-      planets.value.push(planet);
+        const planet = new Planet(planetRadius, planetPos, planetVel, p5);
+
+        planets.value.push(planet);
+      }
     };
   };
 
