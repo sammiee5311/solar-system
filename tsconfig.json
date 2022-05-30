@@ -1,14 +1,16 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.vite-config.json"
-    },
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.vitest.json"
-    }
-  ]
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "strict": true,
+    "rootDir": "./",
+    "jsx":"preserve",
+    "lib":["esnext"],
+   },
+  "exclude": ["node_modules/", "dist/", "src/**/__tests__/*"],
 }
