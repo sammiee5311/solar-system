@@ -7,10 +7,12 @@
     "importHelpers": true,
     "noImplicitAny": false,
     "sourceMap": true,
+    "skipLibCheck": true,
     "strict": true,
     "rootDir": "./",
+    "outDir": "./dist/",
     "jsx":"preserve",
     "lib":["esnext"],
+    "types": ["vite/client"]
    },
-  "exclude": ["node_modules/", "dist/", "src/**/__tests__/*"],
 }
