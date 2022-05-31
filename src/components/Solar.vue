@@ -46,7 +46,7 @@ onMounted(() => {
       const y = p5.mouseY - p5.floor(p5.height / 2);
       const planetRadius = p5.random(10, 30);
 
-      if (p5.abs(x) - planetRadius / 2 >= sunRadius || p5.abs(y) - planetRadius / 2 >= sunRadius) {
+      if (sun && (p5.abs(x) - planetRadius / 2 >= sunRadius || p5.abs(y) - planetRadius / 2 >= sunRadius)) {
         const planetPos = p5.createVector(x, y);
         const planetVel = getPlanetVelocity(planetPos.copy(), sun, p5);
 
