@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, computed } from "vue";
-import { useState } from "../stores/planets";
 import P5 from "p5";
+
 import Planet from "../computes/planet";
+import { useState } from "../stores/planets";
 import { getPlanetVelocity } from "../computes/helper";
 
 const state = useState();
 
 const planets = computed(() => state.planets);
+let isEnterSolar = false;
 
 let p5: P5;
 let sun: Planet;
@@ -47,7 +49,7 @@ onMounted(() => {
       const y = p5.mouseY - p5.floor(p5.height / 2);
       const planetRadius = p5.random(10, 30);
 
-      if (sun && (p5.abs(x) - planetRadius / 2 >= sunRadius || p5.abs(y) - planetRadius / 2 >= sunRadius)) {
+      if (isEnterSolar && (p5.abs(x) - planetRadius / 2 >= sunRadius || p5.abs(y) - planetRadius / 2 >= sunRadius)) {
         const planetPos = p5.createVector(x, y);
         const planetVel = getPlanetVelocity(planetPos.copy(), sun, p5);
 
@@ -55,6 +57,8 @@ onMounted(() => {
 
         planets.value.push(planet);
       }
+
+      isEnterSolar = true;
     };
   };
 
