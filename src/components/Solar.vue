@@ -2,7 +2,8 @@
 import { onMounted, onUnmounted, computed } from "vue";
 import { useState } from "../stores/planets";
 import P5 from "p5";
-import Planet, { getPlanetVelocity } from "../computes/planet";
+import Planet from "../computes/planet";
+import { getPlanetVelocity } from "../computes/helper";
 
 const state = useState();
 
